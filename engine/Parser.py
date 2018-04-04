@@ -1,0 +1,175 @@
+import argparse
+
+__author__ = "Jean Lejeune <jlejeune@immunit.ch>"
+__copyright__ = "Copyright 2018, ImmunIT"
+
+
+class Parser:
+    """This class parses the tool arguments
+    """
+
+    def __init__(self):
+        self.config = {}
+
+    def parse(self):
+        """Parse Drupwn arguments.
+
+        Return
+        ------
+        Configuration dictionnary
+        """
+
+        parser = argparse.ArgumentParser(description="""\
+            Drupwn aims to automaton drupal information gathering.
+        """)
+
+        parser.add_argument('target', type=str, help='hostname to scan')
+        parser.add_argument("--fingerprinting", help="Drupal version", action="store_true")
+        parser.add_argument("--users", help="user enumaration", action="store_true")
+        parser.add_argument("--nodes", help="node enumeration", action="store_true")
+        parser.add_argument("--modules", help="module enumeration", action="store_true")
+        parser.add_argument("--dfiles", help="default files enumeration", action="store_true")
+        parser.add_argument("--themes", help="theme enumeration", action="store_true")
+        parser.add_argument("--cookies", type=str, help="cookies")
+        parser.add_argument("--thread", type=int, help="threads number")
+        parser.add_argument("--range", type=int, help="enumeration range")
+        parser.add_argument("--ua", type=str, help="User Agent")
+        parser.add_argument("--bauth", type=str, help="Basic authentication")
+        parser.add_argument("--delay", type=float, help="request delay")
+        parser.add_argument("--log", help="file logging", action="store_true")
+
+        self._loadConfig(parser.parse_args())
+        self._sanitizeConfig()
+
+        return self.config
+
+    def _loadConfig(self, args):
+        """Load configuration from parsed arguments.
+
+        Parameters
+        ----------
+        args : object
+            Drupwn parsed arguments
+
+        Return
+        ------
+        Configuration dictionnary
+        """
+
+        self.config = {
+            "target": args.target,
+            "fingerprinting": args.fingerprinting,
+            "users": args.users,
+            "nodes": args.nodes,
+            "modules": args.modules,
+            "dfiles": args.dfiles,
+            "themes": args.themes,
+            "cookies": args.cookies,
+            "thread": args.thread,
+            "range": args.range,
+            "userAgent": args.ua,
+            "bauth": args.bauth,
+            "delay": args.delay,
+            "log": args.log
+        }
+
+    def _sanitizeConfig(self):
+        """Sanitize configuration.
+        """
+
+        self.config["range"] = self._setRange(self.config["range"])
+        self.config["cookies"] = self._setCookies(self.config["cookies"])
+        self.config["userAgent"] = self._setUserAgent(self.config["userAgent"])
+        self.config["bauth"] = self._setBAuth(self.config["bauth"])
+        self.config["delay"] = self._setDelay(self.config["delay"])
+
+    def _setRange(self, eRange):
+        """Set enumeration range.
+
+        Parameters
+        ----------
+        eRange : int
+            Enumeration range
+
+        Return
+        ------
+        Enumeration range
+        """
+
+        if eRange is not None:
+            return eRange
+        else:
+            return 1000
+
+    def _setUserAgent(self, userAgent):
+        """Set User-Agent.
+
+        Parameters
+        ----------
+        userAgent : str
+            User-Agent string
+
+        Return
+        ------
+        User-Agent string
+        """
+
+        if userAgent is not None:
+            return userAgent
+        else:
+            return ""
+
+    def _setBAuth(self, bauth):
+        """Set basic authentication.
+
+        Parameters
+        ----------
+        bauth : str
+            Basic authentication string
+
+        Return
+        ------
+        Basic authentication string
+        """
+
+        if bauth is not None:
+            return bauth
+        else:
+            return ""
+
+    def _setCookies(self, cookies):
+        """Set user cookies.
+
+        Parameters
+        ----------
+        cookies : str
+            User cookies string
+
+        Return
+        ------
+        Formated cookies string
+        """
+
+        if cookies is not None:
+            cArray = cookies.split(';')
+            return dict((name.strip(), value.strip()) for name, value in (cookie.split('=') for cookie in cArray))
+        else:
+            return ""
+
+    def _setDelay(self, delay):
+        """Set request delay.
+
+        Parameters
+        ----------
+        delay : float
+            Delay
+
+        Return
+        ------
+        Delay
+        """
+
+        if delay is None:
+            return 0
+        else:
+            return delay
