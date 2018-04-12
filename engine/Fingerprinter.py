@@ -1,26 +1,27 @@
 import re
 
-from plugins.APlugin import APlugin
-
 __author__ = "Jean Lejeune <jlejeune@immunit.ch>"
 __copyright__ = "Copyright 2018, ImmunIT"
 
 
-class Fingerprinting(APlugin):
+class Fingerprinter():
     """This class gather Drupal CMS version.
     """
 
-    def __init__(self, request, logger, config):
-        logger.handle("\n============ Fingerprinting ============\n")
-
-        super().__init__(config["thread"])
-        self.logger = logger
+    def __init__(self, request, logger):
         self.request = request
+        self.logger = logger
 
-    def run(self):
+    def fingerprint(self, config):
+        if config["version"] is None:
+            self.logger.handle("[-] Version not specified, trying to indentify it")
 
-        if not self._getBootstrapVersion() and not self._getMetaVersion():
-            self._getHeaderVersion()
+            config["version"] = self._getBootstrapVersion()
+            config["version"] = self._getMetaVersion() if config["version"] is None else config["version"]
+            config["version"] = self._getHeaderVersion() if config["version"] is None else config["version"]
+
+            version = re.search(r'[+-]?([0-9]*[.])?[0-9]+', config["version"])
+            config["version"] = float(version.group(0))
 
     def _getHeaderVersion(self):
         """Get CMS version from returned header.
@@ -33,11 +34,9 @@ class Fingerprinting(APlugin):
         r = self.request.get()
 
         if r.status_code == 200 and r.headers["X-Generator"]:
-            self.logger.handle("[+] Version: " + r.headers["X-Generator"])
+            return r.headers["X-Generator"]
 
-            return True
-
-        return False
+        return None
 
 
     def _getBootstrapVersion(self):
@@ -55,11 +54,9 @@ class Fingerprinting(APlugin):
             for line in tmp:
                 if re.search("VERSION", line):
                     if "define(" in line:
-                        self.logger.handle("[+] Version: " + line.split("\\")[3] + "'\n")
+                        return line.split("\\")[3]
 
-                        return True
-
-        return False
+        return None
 
     def _getMetaVersion(self):
         """Get CMS version from the index page.
@@ -78,9 +75,6 @@ class Fingerprinting(APlugin):
                     tokens = line.split("\"")
                     for token in tokens:
                         if "Drupal" in token:
-                            self.logger.handle("[+] Version: " + token + "\n")
-                            self.logger.handle("The exact version can be found in several locations depending on the modules installed. CF: Modules enumeration")
+                            return token
 
-                            return True
-
-        return False
+        return None
