@@ -1,4 +1,4 @@
-# Drupwn [v0.8]
+# Drupwn [v0.9.0]
 
 ## Description
 
@@ -20,7 +20,7 @@ Further explaination on our [blog post article](https://www.immunit.ch/en/blog/2
 * Default files enumeration
 * Module enumeration
 * Theme enumeration
-* Fingerprinting module
+* Vulnerability checker
 * Cookies support
 * User-Agent support
 * Basic authentication support
@@ -50,7 +50,7 @@ To build the container, just use this command:
 docker build -t drupwn .
 ```
 
-Docker will download the Debian image and then execute the installation steps.
+Docker will download the Alpine image and then execute the installation steps.
 
 > Be patient, the process can be quite long the first time.
 
@@ -75,3 +75,11 @@ When using docker, you must prior create your logging file then link it when run
 
 To add a new module, follow the template used in the *User.py* file.
 Then, add a reference in the Parser as well as in the Dispatcher in order to ensure its support by the reflective factory.
+
+## Disclaimer of Warranty
+
+WPScan is provided under this License on an "as is" basis, without warranty of any kind, either expressed, implied, or statutory, including, without limitation, warranties that the WPScan is free of defects, merchantable, fit for a particular purpose or non-infringing.
+
+## Disclaimer
+
+Running Drupwn against websites without prior mutual consent may be illegal in your country. The ImmunIT Team accept no liability and are not responsible for any misuse or damage caused by Drupwn.

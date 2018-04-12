@@ -1,7 +1,7 @@
-FROM debian:latest
+FROM alpine:latest
 
-RUN apt update
-RUN apt -y install python3 python3-pip python-pkg-resources
+RUN apk update
+RUN apk add python3
 
 ADD . /opt/drupwn
 RUN pip3 install -r /opt/drupwn/requirements.txt

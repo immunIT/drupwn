@@ -2,7 +2,10 @@
 
 from __future__ import print_function
 
+import os
+
 from engine.Dispatcher import Dispatcher
+from engine.Fingerprinter import Fingerprinter
 from engine.Logger import Logger
 from engine.Parser import Parser
 from engine.Request import Request
@@ -27,6 +30,15 @@ if __name__ == "__main__":
     config = Parser().parse()
     logger = Logger(config["log"])
     request = Request(config["target"], config["cookies"], config["delay"], config["userAgent"], config["bauth"])
+
+    if config["version"] is None:
+        Fingerprinter(request, logger).fingerprint(config)
+
+        if config["version"] is None:
+            logger.handle("\n[-] The automatic detection failed. Please specify a version")
+            os.exit(-1)
+        else:
+            logger.handle("\n[+] Version detected: " + str(config["version"]) + " (can be unreliable)\n")
 
     Dispatcher(request, logger).dispatch(config)
 

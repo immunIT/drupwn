@@ -24,12 +24,13 @@ class Parser:
         """)
 
         parser.add_argument('target', type=str, help='hostname to scan')
-        parser.add_argument("--fingerprinting", help="Drupal version", action="store_true")
         parser.add_argument("--users", help="user enumaration", action="store_true")
         parser.add_argument("--nodes", help="node enumeration", action="store_true")
         parser.add_argument("--modules", help="module enumeration", action="store_true")
         parser.add_argument("--dfiles", help="default files enumeration", action="store_true")
         parser.add_argument("--themes", help="theme enumeration", action="store_true")
+        parser.add_argument("--vulns", help="CVE checker", action="store_true")
+        parser.add_argument("--version", type=float, help="Drupal version")
         parser.add_argument("--cookies", type=str, help="cookies")
         parser.add_argument("--thread", type=int, help="threads number")
         parser.add_argument("--range", type=int, help="enumeration range")
@@ -58,12 +59,13 @@ class Parser:
 
         self.config = {
             "target": args.target,
-            "fingerprinting": args.fingerprinting,
             "users": args.users,
             "nodes": args.nodes,
             "modules": args.modules,
             "dfiles": args.dfiles,
             "themes": args.themes,
+            "vulns": args.vulns,
+            "version": args.version,
             "cookies": args.cookies,
             "thread": args.thread,
             "range": args.range,
