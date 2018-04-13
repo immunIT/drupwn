@@ -19,7 +19,7 @@ class Modules(APlugin):
         self.logger = logger
         self.request = request
 
-        self.paths = ["/sites/all/modules/contrib/", "/sites/default/modules"]
+        self.paths = ["/sites/all/modules/contrib/", "/sites/default/modules/"]
         self.files = ["README.txt", "LICENSE.txt", "CHANGELOG.txt"]
 
     def run(self):
