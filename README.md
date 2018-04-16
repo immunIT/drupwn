@@ -78,7 +78,7 @@ Then, add a reference in the Parser as well as in the Dispatcher in order to ens
 
 ## Disclaimer of Warranty
 
-WPScan is provided under this License on an "as is" basis, without warranty of any kind, either expressed, implied, or statutory, including, without limitation, warranties that the WPScan is free of defects, merchantable, fit for a particular purpose or non-infringing.
+Drupwn is provided under this License on an "as is" basis, without warranty of any kind, either expressed, implied, or statutory, including, without limitation, warranties that the Drupwn is free of defects, merchantable, fit for a particular purpose or non-infringing.
 
 ## Disclaimer
 
