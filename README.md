@@ -75,8 +75,8 @@ docker run --rm -it drupwn --help
 
 ## Logging
 
-The output generated is stored in the following file **/tmp/drupwn.txt**.
-When using docker, you must prior create your logging file then link it when running your container using the following option
+The output generated is stored in the **/tmp/** folder.
+When using docker, run your container using the following option
 
 ```bash
 -v YOUR_PATH_FOLDER:/tmp/
