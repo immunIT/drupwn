@@ -12,7 +12,7 @@ class Dispatcher():
         self.logger = logger
         self.request = request
 
-        self.plugins = {"users", "nodes", "modules", "dfiles", "themes", "vulns"}
+        self.plugins = {"users", "nodes", "modules", "dfiles", "themes"}
 
     def dispatch(self, config):
         """Instantiate and run selected plugins.

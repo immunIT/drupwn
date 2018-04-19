@@ -7,6 +7,7 @@ __copyright__ = "Copyright 2018, ImmunIT"
 class Worker(Thread):
     """This class represents worker that will handle tasks.
     """
+
     def __init__(self, tasks):
         Thread.__init__(self)
         self.tasks = tasks

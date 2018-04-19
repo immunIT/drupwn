@@ -1,4 +1,4 @@
-# Drupwn [v0.9.1]
+# Drupwn [v0.9.2]
 
 ## Description
 
@@ -13,20 +13,31 @@ Further explaination on our [blog post article](https://www.immunit.ch/en/blog/2
 * Drupal 7
 * Drupal 8
 
+## Execution mode
+
+Drupwn can be run, using two seperate modes which are **enum** and **exploit**.
+The enum mode allows performing enumerations whereas the exploit mode allows checking and exploiting CVEs.
+
 ## Functionalities
+
+### Enum mode
 
 * User enumeration
 * Node enumeration
 * Default files enumeration
 * Module enumeration
 * Theme enumeration
-* Vulnerability checker
 * Cookies support
 * User-Agent support
 * Basic authentication support
 * Request delay
 * Enumeration range
 * Logging
+
+### Exploit mode
+
+* Vulnerability checker
+* CVE exploiter
 
 ## Installation
 
@@ -68,7 +79,7 @@ The output generated is stored in the following file **/tmp/drupwn.txt**.
 When using docker, you must prior create your logging file then link it when running your container using the following option
 
 ```bash
--v YOUR_PATH_FOLDER/YOUR_lOGGING_FILE:/tmp/drupwn.txt
+-v YOUR_PATH_FOLDER:/tmp/
 ```
 
 ## Enhancement

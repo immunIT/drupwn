@@ -1,1 +1,3 @@
 requests
+veryprettytable
+prompt_toolkit
