@@ -12,7 +12,7 @@ class Themes(APlugin):
     """
 
     def __init__(self, request, logger, config):
-        logger.handle("\n============ Themes ============\n")
+        logger.handle("\n============ Themes ============\n", None)
 
         super().__init__(config["thread"])
         self.logger = logger
@@ -33,4 +33,4 @@ class Themes(APlugin):
         for path in self.paths:
             theme = name.replace("\n", "")
             if self.request.get(path + theme + "/logo.svg").status_code == 200:
-                self.logger.handle("[+] " + theme)
+                self.logger.handle("[+] " + theme, None)

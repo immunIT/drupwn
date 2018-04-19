@@ -14,14 +14,15 @@ class Fingerprinter():
 
     def fingerprint(self, config):
         if config["version"] is None:
-            self.logger.handle("[-] Version not specified, trying to indentify it")
+            self.logger.handle("[-] Version not specified, trying to identify it", self.logger.ERROR)
 
-            config["version"] = self._getBootstrapVersion()
+            config["version"] = self._getDefaultFilesVersion()
             config["version"] = self._getMetaVersion() if config["version"] is None else config["version"]
             config["version"] = self._getHeaderVersion() if config["version"] is None else config["version"]
 
-            version = re.search(r'[+-]?([0-9]*[.])?[0-9]+', config["version"])
-            config["version"] = float(version.group(0))
+            if config["version"]:
+                version = re.search(r'[+-]?([0-9]*[.])?[0-9]+', config["version"])
+                config["version"] = float(version.group(0))
 
     def _getHeaderVersion(self):
         """Get CMS version from returned header.
@@ -33,13 +34,16 @@ class Fingerprinter():
 
         r = self.request.get()
 
-        if r.status_code == 200 and r.headers["X-Generator"]:
-            return r.headers["X-Generator"]
+        try:
+            if r.status_code == 200 and r.headers["X-Generator"]:
+                return r.headers["X-Generator"]
+        except:
+            pass
 
         return None
 
 
-    def _getBootstrapVersion(self):
+    def _getDefaultFilesVersion(self):
         """Get CMS version from bootstrap include.
 
         Return
@@ -47,14 +51,20 @@ class Fingerprinter():
         Return True if the version is detected. False otherwise.
         """
 
-        r = self.request.get("/includes/bootstrap.inc")
+        dfiles = {"/CHANGELOG.txt", "/core/CHANGELOG.txt", "/includes/bootstrap.inc", "/core/includes/bootstrap.inc"}
 
-        if r.status_code == 200:
-            tmp = str(r.content).split("\\n")
-            for line in tmp:
-                if re.search("VERSION", line):
-                    if "define(" in line:
-                        return line.split("\\")[3]
+        for dfile in dfiles:
+
+            r = self.request.get(dfile)
+
+            if r.status_code == 200:
+                content = str(r.content.decode("utf-8"))
+                lines = content.split("\n")
+                for line in lines:
+                    if "Drupal " in line:
+                        match = re.search('Drupal (.*),', line)
+                        if match:
+                            return match.group(1)
 
         return None
 

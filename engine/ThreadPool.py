@@ -9,6 +9,7 @@ __copyright__ = "Copyright 2018, ImmunIT"
 class ThreadPool:
     """This class is used as threading pool to add and execute jobs.
     """
+
     def __init__(self, nb):
         self.tasks = Queue(nb)
         for _ in range(nb):

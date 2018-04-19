@@ -5,6 +5,7 @@ from __future__ import print_function
 import os
 
 from engine.Dispatcher import Dispatcher
+from engine.Exploiter import Exploiter
 from engine.Fingerprinter import Fingerprinter
 from engine.Logger import Logger
 from engine.Parser import Parser
@@ -35,11 +36,15 @@ if __name__ == "__main__":
         Fingerprinter(request, logger).fingerprint(config)
 
         if config["version"] is None:
-            logger.handle("\n[-] The automatic detection failed. Please specify a version")
-            os.exit(-1)
+            logger.handle("\n[-] The automatic detection failed. Please specify a version", logger.ERROR)
+            os._exit(-1)
         else:
-            logger.handle("\n[+] Version detected: " + str(config["version"]) + " (can be unreliable)\n")
+            logger.handle("\n[+] Version detected: " + str(config["version"]) + "\n", logger.SUCCESS)
 
-    Dispatcher(request, logger).dispatch(config)
-
+    if config["mode"] == "enum":
+        Dispatcher(request, logger).dispatch(config)
+    elif config["mode"] == "exploit":
+        Exploiter(request, logger, config).run()
+    else:
+        logger.handle("[-] Unknown mode. Modes available : enum | exploit", logger.ERROR)
     logger.close()

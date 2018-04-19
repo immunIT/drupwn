@@ -11,7 +11,7 @@ class Users(APlugin):
     """
 
     def __init__(self, request, logger, config):
-        logger.handle("\n============ Users ============\n")
+        logger.handle("\n============ Users ============\n", None)
 
         super().__init__(config["thread"])
         self.logger = logger
@@ -32,14 +32,14 @@ class Users(APlugin):
         username = self._checkRedirect(r.url)
 
         if username != "":
-            self.logger.handle("[+] " + username + " (id=" + str(id) + ")")
+            self.logger.handle("[+] " + username + " (id=" + str(id) + ")", None)
         elif r.status_code == 403:
-            self.logger.handle("[+] ***** (id=" + str(id) + ")")
+            self.logger.handle("[+] ***** (id=" + str(id) + ")", None)
         elif r.status_code == 200:
             tmp = str(r.content).split("\\n")
             for line in tmp:
                 if re.search("<title>", line):
-                    self.logger.handle("[+] " + line.split("|")[0].split(">")[1] + "(id=" + str(id) + ")")
+                    self.logger.handle("[+] " + line.split("|")[0].split(">")[1] + "(id=" + str(id) + ")", None)
 
     def _checkRedirect(self, url):
         """Check if the username is disclosed in the URL.

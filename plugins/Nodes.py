@@ -9,7 +9,7 @@ class Nodes(APlugin):
     """
 
     def __init__(self, request, logger, config):
-        logger.handle("\n============ Nodes ============\n")
+        logger.handle("\n============ Nodes ============\n", None)
 
         super().__init__(config["thread"])
         self.logger = logger
@@ -28,4 +28,4 @@ class Nodes(APlugin):
 
         r = self.request.get("/node/" + str(id))
         if r.status_code == 200:
-            self.logger.handle(r.url)
+            self.logger.handle(r.url, None)
