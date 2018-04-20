@@ -53,6 +53,14 @@ python3 drupwn.py --help
 
 ## Docker alternative
 
+### Official image
+
+You can pull the official Drupwn image from the dockerhub registry using the following command:
+
+```
+docker pull immunit/drupwn
+```
+
 ### Build
 
 To build the container, just use this command:
