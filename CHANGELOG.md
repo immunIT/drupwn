@@ -14,6 +14,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Deleting the vulnerability checker plugin. Now, CVEs can be checked using the exploit mode
 * Adding colors within the logger engine
 * Improving the version fingerprinting engine
+* Executable bit added to drupwn.py
+* /usr/bin/env added to drupwn.py
 
 ## [0.9.1] [2018-04-13]
 
