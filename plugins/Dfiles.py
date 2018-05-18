@@ -15,7 +15,7 @@ class Dfiles(APlugin):
         self.logger = logger
         self.request = request
 
-        self.files = ["README.txt", "LICENSE.txt", "web.config", "update.php", "robots.txt", "install.php"]
+        self.files = ["README.txt", "LICENSE.txt", "web.config", "update.php", "robots.txt", "install.php", "xmlrpc.php"]
 
     def run(self):
         for f in self.files:
