@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Improving the version fingerprinting engine
 * Executable bit added to drupwn.py
 * /usr/bin/env added to drupwn.py
+* Adding xmlrpc.php in default files enumeration plugin
 
 ## [0.9.1] [2018-04-13]
 
