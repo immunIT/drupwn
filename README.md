@@ -39,16 +39,18 @@ The enum mode allows performing enumerations whereas the exploit mode allows che
 * Vulnerability checker
 * CVE exploiter
 
-## Installation
+## Installation & Usage
 
 ```bash
 pip3 install -r requirements.txt
+python3 drupwn --help
 ```
 
-## Usage
+or
 
 ```bash
-python3 drupwn.py --help
+python3 setup.py install
+drupwn --help
 ```
 
 ## Docker alternative
