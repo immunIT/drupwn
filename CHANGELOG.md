@@ -8,6 +8,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 * Exploit mode allowing to assess for CVEs
+* Adding xmlrpc.php in default files enumeration plugin
+* Adding the support of the CVE-2018-7602
+* Setup.py added
 
 ### Changes
 
@@ -16,7 +19,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Improving the version fingerprinting engine
 * Executable bit added to drupwn.py
 * /usr/bin/env added to drupwn.py
-* Adding xmlrpc.php in default files enumeration plugin
 
 ## [0.9.1] [2018-04-13]
 
