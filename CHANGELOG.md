@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.9.2] [2018-06-28]
+
+### Hotfix
+
+* A minimum version has been set for the prompt_toolkit library. Indeed, the last version seems to be bugged
+
 ## [0.9.2] [2018-04-16]
 
 ### Added
