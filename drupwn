@@ -30,7 +30,8 @@ if __name__ == "__main__":
 
     config = Parser().parse()
     logger = Logger(config["log"])
-    request = Request(config["target"], config["cookies"], config["delay"], config["userAgent"], config["bauth"])
+    request = Request(config["target"], config["cookies"], config["delay"], config["userAgent"], config["bauth"],
+        config["proxy"] if config["proxy"] is not None else config["proxies"])
 
     if config["version"] is None:
         Fingerprinter(request, logger).fingerprint(config)

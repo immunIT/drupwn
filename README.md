@@ -1,4 +1,4 @@
-# Drupwn [v0.9.2]
+# Drupwn [v1.0.0]
 
 ## Description
 
@@ -33,6 +33,7 @@ The enum mode allows performing enumerations whereas the exploit mode allows che
 * Request delay
 * Enumeration range
 * Logging
+* Socks and HTTP proxy support
 
 ### Exploit mode
 

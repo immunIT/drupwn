@@ -1,3 +1,4 @@
 requests
+pysocks
 veryprettytable
 prompt_toolkit<=1.0.15
