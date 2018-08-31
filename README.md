@@ -1,4 +1,4 @@
-# Drupwn [v0.9.2]
+# Drupwn [v1.0.0]
 
 ## Description
 
