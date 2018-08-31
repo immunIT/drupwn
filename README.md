@@ -33,6 +33,7 @@ The enum mode allows performing enumerations whereas the exploit mode allows che
 * Request delay
 * Enumeration range
 * Logging
+* Socks and HTTP proxy support
 
 ### Exploit mode
 
