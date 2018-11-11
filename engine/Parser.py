@@ -32,7 +32,7 @@ class Parser:
         parser.add_argument("--themes", help="theme enumeration", action="store_true")
         parser.add_argument("--version", type=float, help="Drupal version")
         parser.add_argument("--cookies", type=str, help="cookies")
-        parser.add_argument("--thread", type=int, help="threads number")
+        parser.add_argument("--thread", type=int, default=20, help="threads number")
         parser.add_argument("--range", type=int, help="enumeration range")
         parser.add_argument("--ua", type=str, help="User Agent")
         parser.add_argument("--bauth", type=str, help="Basic authentication")
