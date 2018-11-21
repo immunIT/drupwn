@@ -32,7 +32,7 @@ setup(
 
     packages=find_packages(),
 
-    install_requires=['requests', 'veryprettytable', 'prompt_toolkit <= 1.0.15', 'pysocks'],
+    install_requires=['requests', 'veryprettytable', 'prompt_toolkit <= 2.0.7', 'pysocks'],
     python_requires='>=3',
     scripts=['drupwn']
 )
