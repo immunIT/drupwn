@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.1] [2018-11-21]
+
+### Changed
+
+* Fix prompt_toolkit package
+* Adding new module path, used by new Drupal version
+* Set 20 default threads for efficiency
+
+
 ## [1.0.0] [2018-08-31]
 
 ### Added
