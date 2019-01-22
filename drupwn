@@ -2,6 +2,7 @@
 
 from __future__ import print_function
 
+import socket
 import os
 
 from engine.Dispatcher import Dispatcher
@@ -32,6 +33,12 @@ if __name__ == "__main__":
     logger = Logger(config["log"])
     request = Request(config["target"], config["cookies"], config["delay"], config["userAgent"], config["bauth"],
         config["proxy"] if config["proxy"] is not None else config["proxies"])
+        
+    try:
+        request.get()
+    except:
+        logger.handle("\n[-] Target is not reachable. Exiting.", logger.ERROR)
+        os._exit(-1)
 
     if config["version"] is None:
         Fingerprinter(request, logger).fingerprint(config)
