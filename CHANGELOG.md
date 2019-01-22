@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.2] [2019-01-22]
+
+### Changed
+
+* README file update
+* Fixing name resolution and catching stack trace when fail
+
 ## [1.0.1] [2018-11-21]
 
 ### Changed
