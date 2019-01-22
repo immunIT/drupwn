@@ -4,7 +4,7 @@
 
 Drupwn claims to provide an efficient way to gather drupal information.
 
-[![asciicast](https://asciinema.org/a/42383.png)](https://asciinema.org/a/J6dQmUJVskyHV07iARITfoLan)
+[![asciicast](https://asciinema.org/a/J6dQmUJVskyHV07iARITfoLan.svg)](https://asciinema.org/a/J6dQmUJVskyHV07iARITfoLan)
 
 Further explaination on our [blog post article](https://www.immunit.ch/en/blog/2018/04/10/yet-another-drupal-scanner-drupwn-2/)
 
