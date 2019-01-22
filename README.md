@@ -40,7 +40,7 @@ The enum mode allows performing enumerations whereas the exploit mode allows che
 * Vulnerability checker
 * CVE exploiter
 
-## Installation & Usage
+## Installation
 
 ```bash
 pip3 install -r requirements.txt
@@ -52,6 +52,49 @@ or
 ```bash
 python3 setup.py install
 drupwn --help
+```
+
+## Usage
+
+```
+$ drupwn -h
+
+        ____
+       / __ \_______  ______ _      ______
+      / / / / ___/ / / / __ \ | /| / / __ \
+     / /_/ / /  / /_/ / /_/ / |/ |/ / / / /
+    /_____/_/   \__,_/ .___/|__/|__/_/ /_/
+                     /_/
+
+usage: drupwn [-h] [--users] [--nodes] [--modules] [--dfiles] [--themes]
+              [--version VERSION] [--cookies COOKIES] [--thread THREAD]
+              [--range RANGE] [--ua UA] [--bauth BAUTH] [--delay DELAY]
+              [--log] [--proxy PROXY | --proxies PROXIES]
+              mode target
+
+Drupwn aims to automate drupal information gathering.
+
+positional arguments:
+  mode               enum|exploit
+  target             hostname to scan
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --users            user enumaration
+  --nodes            node enumeration
+  --modules          module enumeration
+  --dfiles           default files enumeration
+  --themes           theme enumeration
+  --version VERSION  Drupal version
+  --cookies COOKIES  cookies
+  --thread THREAD    threads number
+  --range RANGE      enumeration range
+  --ua UA            User Agent
+  --bauth BAUTH      Basic authentication
+  --delay DELAY      request delay
+  --log              file logging
+  --proxy PROXY      [http|https|socks]://host:port
+  --proxies PROXIES  Proxies file
 ```
 
 ## Docker alternative
