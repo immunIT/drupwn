@@ -2,3 +2,4 @@ requests
 pysocks
 veryprettytable
 prompt_toolkit>=2.0.7
+bs4
