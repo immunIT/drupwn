@@ -5,7 +5,7 @@ setup(
     author_email='rd@immunit.ch',
 
     name='drupwn',
-    version='0.9.2',
+    version='1.0.3',
     licence='GPLv3',
 
     url='https://github.com/immunIT/drupwn',
@@ -32,7 +32,7 @@ setup(
 
     packages=find_packages(),
 
-    install_requires=['requests', 'veryprettytable', 'prompt_toolkit <= 2.0.7', 'pysocks'],
+    install_requires=['requests', 'veryprettytable', 'prompt_toolkit <= 2.0.7', 'pysocks', 'bs4'],
     python_requires='>=3',
     scripts=['drupwn']
 )
