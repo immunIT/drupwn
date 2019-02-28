@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.3] [2019-02-28]
+
+### Added
+
+* Support CVE-2019-6340
+
+### Changed
+
+* Requests wrapper to handle data and headers overwriting
+* Delete legacy CVE checker
+
 ## [1.0.2] [2019-01-22]
 
 ### Changed

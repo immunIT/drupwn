@@ -26,11 +26,21 @@ class Request:
 
         requests.packages.urllib3.disable_warnings()
 
-    def get(self, path=""):
+    def _updateHeaders(self, headers):
+        if not headers:
+            return self.headers
+        else:
+            tmp = dict(self.headers)
+            tmp.update(headers)
+            return tmp
+
+    def get(self, path="", headers={}, data=""):
         """Perform GET request.
 
         Parameters
         ----------
+        headers : dict
+            Request headers
         path : str
             Request path
 
@@ -49,7 +59,7 @@ class Request:
             proxies=None
 
         time.sleep(self.delay)
-        return self.session.get(self.url + path, headers=self.headers, cookies=self.cookies, proxies=proxies, verify=False)
+        return self.session.get(self.url + path, headers=self._updateHeaders(headers), data=data, cookies=self.cookies, proxies=proxies, verify=False)
 
     def post(self, data, path=""):
         """Perform POST request.
