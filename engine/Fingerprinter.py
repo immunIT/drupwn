@@ -16,13 +16,14 @@ class Fingerprinter():
         if config["version"] is None:
             self.logger.handle("[-] Version not specified, trying to identify it", self.logger.ERROR)
 
-            config["version"] = self._getDefaultFilesVersion()
-            config["version"] = self._getMetaVersion() if config["version"] is None else config["version"]
-            config["version"] = self._getHeaderVersion() if config["version"] is None else config["version"]
+            version = self._getDefaultFilesVersion() or \
+                self._getMetaVersion() or \
+                self._getHeaderVersion()
 
-            if config["version"]:
-                version = re.search(r'[+-]?([0-9]*[.])?[0-9]+', config["version"])
-                config["version"] = float(version.group(0))
+            if version:
+                matched = re.search(r'[+-]?([0-9]*[.])?[0-9]+', version)
+                if matched:
+                    config["version"] = float(version.group(0))
 
     def _getHeaderVersion(self):
         """Get CMS version from returned header.
@@ -41,7 +42,6 @@ class Fingerprinter():
             pass
 
         return None
-
 
     def _getDefaultFilesVersion(self):
         """Get CMS version from bootstrap include.
