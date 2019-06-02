@@ -1,13 +1,12 @@
-FROM alpine:latest
+# Dockerfile for https://github.com/immunIT/drupwn
+# License GPLv3
+FROM python:3.7-alpine3.9
 
-RUN apk update
-RUN apk add python3
-
-ADD . /opt/drupwn
+COPY . /opt/drupwn
 
 WORKDIR /opt/drupwn
 
-RUN python3 setup.py install
+RUN python setup.py install
 
 ENTRYPOINT ["drupwn"]
 CMD ["--help"]
