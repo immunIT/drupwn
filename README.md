@@ -101,21 +101,21 @@ optional arguments:
 
 ### Official image
 
-You can pull the official Drupwn image from the dockerhub registry using the following command:
+You can run the official Drupwn image from the dockerhub registry using the following command:
 
-```
-docker pull immunit/drupwn
+```bash
+docker run --rm -it immunit/drupwn
 ```
 
 ### Build
 
-To build the container, just use this command:
+To build the container yourself, just use this command:
 
 ```bash
 docker build -t drupwn .
 ```
 
-Docker will download the Alpine image and then execute the installation steps.
+Docker will download the base image and then execute the installation steps.
 
 > Be patient, the process can be quite long the first time.
 
