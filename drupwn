@@ -10,6 +10,7 @@ from engine.Fingerprinter import Fingerprinter
 from engine.Logger import Logger
 from engine.Parser import Parser
 from engine.Request import Request
+from plugins.Update import Update
 
 __author__ = "Jean Lejeune <jlejeune@immunit.ch>"
 __copyright__ = "Copyright 2018, ImmunIT"
@@ -30,6 +31,10 @@ if __name__ == "__main__":
 
     config = Parser().parse()
     logger = Logger(config["log"])
+    
+    if config['update']:
+        Update(logger,config).run()
+        
     request = Request(config["target"], config["cookies"], config["delay"], config["userAgent"], config["bauth"],
         config["proxy"] if config["proxy"] is not None else config["proxies"])
 
@@ -44,7 +49,6 @@ if __name__ == "__main__":
 
         if config["version"] is None:
             logger.handle("\n[-] The automatic detection failed. Please specify a version", logger.ERROR)
-            os._exit(-1)
         else:
             logger.handle("\n[+] Version detected: " + str(config["version"]) + "\n", logger.SUCCESS)
 

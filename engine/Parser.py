@@ -23,8 +23,8 @@ class Parser:
             Drupwn aims to automate drupal information gathering.
         """)
 
-        parser.add_argument('mode', type=str, help='enum|exploit')
-        parser.add_argument('target', type=str, help='hostname to scan')
+        parser.add_argument('--mode', type=str, help='enum|exploit',required=False)
+        parser.add_argument('--target', type=str, help='hostname to scan',required=False)
         parser.add_argument("--users", help="user enumaration", action="store_true")
         parser.add_argument("--nodes", help="node enumeration", action="store_true")
         parser.add_argument("--modules", help="module enumeration", action="store_true")
@@ -38,12 +38,16 @@ class Parser:
         parser.add_argument("--bauth", type=str, help="Basic authentication")
         parser.add_argument("--delay", type=float, help="request delay")
         parser.add_argument("--log", help="file logging", action="store_true")
+        parser.add_argument("--update", help="update plugins and themes", action="store_true")
 
         group = parser.add_mutually_exclusive_group(required=False)
         group.add_argument("--proxy", type=str, help="[http|https|socks]://host:port")
         group.add_argument("--proxies", type=str, help="Proxies file")
+        
 
         self._loadConfig(parser.parse_args())
+        if not(self.config['update']) and not(self.config['mode'] or self.config['target']):
+            parser.error('the following arguments are required: --mode, --target')
         self._sanitizeConfig()
 
         return self.config
@@ -78,7 +82,8 @@ class Parser:
             "delay": args.delay,
             "log": args.log,
             "proxy": args.proxy,
-            "proxies": args.proxies
+            "proxies": args.proxies,
+            "update": args.update
         }
 
     def _sanitizeConfig(self):

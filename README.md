@@ -69,8 +69,8 @@ $ drupwn -h
 usage: drupwn [-h] [--users] [--nodes] [--modules] [--dfiles] [--themes]
               [--version VERSION] [--cookies COOKIES] [--thread THREAD]
               [--range RANGE] [--ua UA] [--bauth BAUTH] [--delay DELAY]
-              [--log] [--proxy PROXY | --proxies PROXIES]
-              mode target
+              [--log] [--proxy PROXY | --proxies PROXIES] [--update]
+              --mode --target
 
 Drupwn aims to automate drupal information gathering.
 

@@ -21,13 +21,35 @@ class Modules(APlugin):
 
         self.paths = ["/sites/all/modules/contrib/", "/sites/default/modules/"]
         self.files = ["README.txt", "LICENSE.txt", "CHANGELOG.txt"]
+        self.exentions = [".info.yml", ".libraries.yml","links.menu.yml",".module",".routing.yml",".services.yml"]
 
     def run(self):
         with open("plugins/wordlists/plugins.txt", "rU") as fd:
             for plugin in fd:
                 self.add(self._enum, plugin)
             self.wait()
+            self.detectCustom()
 
+    def update(self):
+        with open("plugins/wordlists/plugins.txt", "w") as fd:
+            session = requests.Session()
+            requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+            i = 1
+            plugins_file = open("./plugins/wordlists/plugins.txt", "w")
+            while True:
+                paramsGet = {"page":""+str(i)+"","sort":"created_desc"}
+                headers = {"User-Agent":"curl/7.64.1","Connection":"close","Accept":"*/*"}
+                response = session.get("https://git.drupalcode.org/groups/project/-/children.json", params=paramsGet, headers=headers,verify=False)
+                json_st = json.loads(response.content)
+                if response.status_code == 200:
+                    if len(json_st) == 0:
+                        plugins_file.close()
+                        break
+                    for name in json_st:
+                        print (name['name'])
+                        fd.write(str(name['name']))
+                        fd.write("\n")
+                i +=1
     def _enum(self, name):
         """Enumerates modules according to predefined application paths as well as files.
 
@@ -68,3 +90,20 @@ class Modules(APlugin):
         for line in tmp:
             if re.search("version = \"", line):
                 return "\t" + line + "\n\n"
+
+    def detectCustom(self):
+        self.logger.handle("\n============ Custom Modules ============\n", None)
+        with self.request.get('/') as r:
+            content = r.content
+            cust_modules = list(set(result.lower() for result in re.findall(r'\/modules\/custom\/([^\/]*)', str(content), re.IGNORECASE)))
+            buf = ""
+            for cust_module in cust_modules:
+                buf +="/modules/custom/%s\n" %cust_module
+                for extension in self.exentions:
+                    r = self.request.get('/modules/custom/%s/%s%s' %(cust_module,cust_module,extension))
+                    if r.status_code == 200:
+                        buf+='/modules/custom/%s/%s%s Found (200)\n' %(cust_module,cust_module,extension)
+                    if r.status_code == 403:
+                        buf+='/modules/custom/%s/%s%s Forbidden (403)\n' %(cust_module,cust_module,extension)
+            if buf != "":
+                self.logger.handle(buf, None)
