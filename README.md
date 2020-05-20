@@ -70,20 +70,18 @@ $ drupwn -h
     /_____/_/   \__,_/ .___/|__/|__/_/ /_/
                      /_/
 
-usage: drupwn [-h] [--users] [--nodes] [--modules] [--dfiles] [--themes]
+usage: drupwn [-h] [--mode MODE] [--target TARGET] [--users] [--nodes] [--modules] [--dfiles] [--themes]
               [--version VERSION] [--cookies COOKIES] [--thread THREAD]
-              [--range RANGE] [--ua UA] [--bauth BAUTH] [--delay DELAY]
-              [--log] [--proxy PROXY | --proxies PROXIES] [--update]
-              --mode --target
+              [--range RANGE] [--ua UA] [--bauth BAUTH]
+              [--delay DELAY] [--log] [--update] 
+              [--proxy PROXY | --proxies PROXIES]
 
 Drupwn aims to automate drupal information gathering.
 
-positional arguments:
-  mode               enum|exploit
-  target             hostname to scan
-
 optional arguments:
   -h, --help         show this help message and exit
+  --mode MODE        enum|exploit
+  --target TARGET    hostname to scan
   --users            user enumaration
   --nodes            node enumeration
   --modules          module enumeration
@@ -97,6 +95,7 @@ optional arguments:
   --bauth BAUTH      Basic authentication
   --delay DELAY      request delay
   --log              file logging
+  --update           update plugins and themes
   --proxy PROXY      [http|https|socks]://host:port
   --proxies PROXIES  Proxies file
 ```
