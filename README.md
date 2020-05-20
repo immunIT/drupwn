@@ -1,10 +1,14 @@
-# Drupwn [v1.0.3]
+# Drupwn [v1.0.4]
 
 ## Description
 
 Drupwn claims to provide an efficient way to gather drupal information.
 
-[![asciicast](https://asciinema.org/a/J6dQmUJVskyHV07iARITfoLan.svg)](https://asciinema.org/a/J6dQmUJVskyHV07iARITfoLan)
+Enumeration
+[![asciicast](https://asciinema.org/a/5InNWAotigwM4bRscUi7yKAtt.svg)](https://asciinema.org/a/5InNWAotigwM4bRscUi7yKAtt)
+
+Exploitation
+[![asciicast](https://asciinema.org/a/bZmopDt4lyix1D9sgxwQMCRfn.svg)](https://asciinema.org/a/bZmopDt4lyix1D9sgxwQMCRfn)
 
 Further explaination on our [blog post article](https://www.immunit.ch/en/blog/2018/04/10/yet-another-drupal-scanner-drupwn-2/)
 

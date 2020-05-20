@@ -30,26 +30,6 @@ class Modules(APlugin):
             self.wait()
             self.detectCustom()
 
-    def update(self):
-        with open("plugins/wordlists/plugins.txt", "w") as fd:
-            session = requests.Session()
-            requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-            i = 1
-            plugins_file = open("./plugins/wordlists/plugins.txt", "w")
-            while True:
-                paramsGet = {"page":""+str(i)+"","sort":"created_desc"}
-                headers = {"User-Agent":"curl/7.64.1","Connection":"close","Accept":"*/*"}
-                response = session.get("https://git.drupalcode.org/groups/project/-/children.json", params=paramsGet, headers=headers,verify=False)
-                json_st = json.loads(response.content)
-                if response.status_code == 200:
-                    if len(json_st) == 0:
-                        plugins_file.close()
-                        break
-                    for name in json_st:
-                        print (name['name'])
-                        fd.write(str(name['name']))
-                        fd.write("\n")
-                i +=1
     def _enum(self, name):
         """Enumerates modules according to predefined application paths as well as files.
 
