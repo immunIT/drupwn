@@ -21,8 +21,11 @@ class Fingerprinter():
             config["version"] = self._getHeaderVersion() if config["version"] is None else config["version"]
 
             if config["version"]:
-                version = re.search(r'[+-]?([0-9]*[.])?[0-9]+', config["version"])
-                config["version"] = float(version.group(0))
+                if re.match(r'[+-]?([0-9]*[.])?[0-9]+', config["version"]):
+                    version = re.search(r'[+-]?([0-9]*[.])?[0-9]+', config["version"])
+                    config["version"] = float(version.group(0))
+                else:
+                    config["version"] = '8.x'
 
     def _getHeaderVersion(self):
         """Get CMS version from returned header.
