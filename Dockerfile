@@ -1,7 +1,8 @@
 FROM alpine:latest
 
 RUN apk update
-RUN apk add python3
+RUN apk add --no-cache python3 \ 
+	&& apk add --no-cache py3-setuptools
 
 ADD . /opt/drupwn
 
